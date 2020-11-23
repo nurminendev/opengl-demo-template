@@ -1,0 +1,35 @@
+!!ARBfp1.0
+
+# Simple program to show how to code up the default texture environment
+
+ATTRIB tex = fragment.texcoord;      #first set of texture coordinates
+ATTRIB col = fragment.color.primary; #diffuse interpolated color
+
+OUTPUT outColor = result.color;
+
+TEMP tmp;
+
+TXP tmp, tex, texture, 2D;           #sample the texture
+
+MUL outColor, tmp, col;              #perform the modulation
+
+END
+
+#!!ARBfp1.0
+#
+#TEMP temp;
+#ATTRIB pos  = fragment.position;
+#ATTRIB col0 = fragment.color.primary;
+#ATTRIB col1 = fragment.color.secondary;
+#ATTRIB tex0 = fragment.texcoord[0];
+#ATTRIB matamb = state.material.ambient;
+#
+#OUTPUT outcol = result.color;
+#OUTPUT outpos = result.depth;
+#
+#TEX temp, tex0, texture[0], 2D;
+#MOV outcol, temp;
+#MOV	outpos, pos;
+#ADD outcol, col0, col1;
+#
+#END
